@@ -1,21 +1,19 @@
 'use strict';
 
-class Stack {
-  construtor() {
-    this._data = [];
-  }
+const Stack = function() {
+  this._data = [];
+};
 
-  push(value) {
-    this._data.push(value);
-  }
+Stack.prototype.push = function(value) {
+  this._data.push(value);
+};
 
-  pop() {
-    return this._data.pop();
-  }
+Stack.prototype.pop = function() {
+  return this._data.pop();
+};
 
-  getLength() {
-    return this._data.length;
-  }
-}
+Stack.prototype.getLength = function() {
+  return this._data.length;
+};
 
 module.exports = Stack;

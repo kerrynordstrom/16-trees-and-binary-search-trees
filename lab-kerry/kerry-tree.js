@@ -1,6 +1,7 @@
 'use strict';
 
 const Queue = require('./lib/queue');
+const Stack = require('./lib/stack');
 const util = require('util');
 
 const KerryTree = function (value) {
@@ -24,6 +25,7 @@ let fifteen = new KerryTree(15);
 let sixteen = new KerryTree(16);
 let seventeen = new KerryTree(17);
 let eighteen = new KerryTree(18);
+let duplicateEighteen = new KerryTree(18);
 
 eleven.appendChild(twelve);
 eleven.appendChild(thirteen);
@@ -34,6 +36,7 @@ thirteen.appendChild(sixteen);
 thirteen.appendChild(seventeen);
 
 sixteen.appendChild(eighteen);
+sixteen.appendChild(duplicateEighteen);
 
 seventeen.appendChild(eighteen);
 
@@ -76,22 +79,42 @@ KerryTree.prototype.concatToString = function(str = '') {
     current = stringQueue.dequeue();
     
     if (str === '') {
-      str += current.value.toString();
-    }
-
-    for(let i = 0; i < current._children.length; i++) {
-      str += '\n' + current._children[i].value.toString();
-    
-      for(let j = 0; j < current._children[i]._children.length; j++) {
-        str += '\n' + current._children[i]._children[j].value.toString();
-      }
+      str += JSON.stringify(current.value);
+    } else {
+      str += '\n' + JSON.stringify(current.value);
     }
 
     for (let child of current._children) {
-      console.log(stringQueue.enqueue(child));
+      stringQueue.enqueue(child);
     }
-    return str;
   }
+  return str;
 };
+
+KerryTree.prototype.pushToArray = function (arr = []) {
+
+  let arrayStack = new Stack();
+  arrayStack.push(this);
+
+  let current = null;
+
+  while (arrayStack.getLength() > 0) {
+    current = arrayStack.pop();
+
+    arr.push(current.value);
+    
+    for (let child of current._children) {
+      arrayStack.push(child);
+    }
+  }
+  return arr;
+};
+
+
+console.log(duplicateEighteen.pushToArray());
+
+console.log(util.inspect(thirteen, { showHidden: false, depth: null }))
+
+
 
 module.exports = KerryTree;

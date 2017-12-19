@@ -1,21 +1,20 @@
 'use strict';
 
-class Queue {
-  constructor() {
-    this._data = [];
-  }
+const Queue = function() {
+  this._data = [];
+};
 
-  enqueue(value) {
-    this._data.push(value);
-  }
+Queue.prototype.enqueue = function(value) {
+  this._data.push(value);
+};
 
-  dequeue() {
-    return this._data.shift();
-  }
+Queue.prototype.dequeue = function() {
+  return this._data.shift();
+};
 
-  getLength() {
-    return this._data.length;
-  }
-}
+Queue.prototype.getLength = function() {
+  return this._data.length;
+};
+
 
 module.exports = Queue;

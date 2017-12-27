@@ -94,6 +94,7 @@ KerryTree.prototype.concatToString = function(str = '') {
 KerryTree.prototype.pushToArray = function (arr = []) {
 
   let arrayStack = new Stack();
+  
   arrayStack.push(this);
 
   let current = null;
@@ -102,18 +103,20 @@ KerryTree.prototype.pushToArray = function (arr = []) {
     current = arrayStack.pop();
 
     arr.push(current.value);
-    
+
+ 
     for (let child of current._children) {
       arrayStack.push(child);
     }
   }
+  
   return arr;
 };
 
 
-console.log(duplicateEighteen.pushToArray());
+// console.log(util.inspect(eleven.pushToArray(), {showHidden: false, depth: null}));
 
-console.log(util.inspect(thirteen, { showHidden: false, depth: null }))
+// console.log(util.inspect(eleven, { showHidden: false, depth: null }))
 
 
 

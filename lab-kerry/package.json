@@ -1,0 +1,24 @@
+{
+  "name": "16-kary-binary-trees",
+  "version": "1.0.0",
+  "description": "kAry and Binary Trees",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest -i --coverage"
+  },
+  "keywords": [
+    "kAry-tree",
+    "binary-tree",
+    "tdd"
+  ],
+  "author": "KAry Nordstrom",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^4.13.1",
+    "jest": "^22.0.1",
+    "util": "^0.10.3"
+  }
+}

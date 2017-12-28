@@ -1,6 +1,6 @@
 'use strict';
 
-// const util = require('util');
+const util = require('util');
 
 class TreeNode {
   constructor(value) {
@@ -17,6 +17,7 @@ class BinarySearchTree {
 
   //Refactored insert method in order to use separate node class
   insert(value) {
+
     let node = new TreeNode(value);
 
     if (typeof value !== 'number')
@@ -26,22 +27,27 @@ class BinarySearchTree {
       throw new TypeError('Value must be a number');
 
     if (!this.root) {
+      // console.log(this.root);
       this.root = node;
     } else {
-      let current = this.root;
-      while (current) {
-        if (node.value < current.value) {
-          if (!current.left) 
-            return current.left = node;
-          current = current.left;
+      let currentNode = this.root;
 
-        } else if (node.value > current.value) {
-          if (!current.right) 
-            return current.right = node;
-          
-          current = current.right;
+      while (currentNode) {
+        if (node.value < currentNode.value) {
+          if (!currentNode.left) {
+            return currentNode.left = node;
+            
+          }
+          currentNode = currentNode.left;
+
+        } else if (node.value > currentNode.value) {
+          if (!currentNode.right) {
+            return currentNode.right = node;
+            
+          }
+          currentNode = currentNode.right;
+
         } else {
-          
           return null;
         }
       }
@@ -50,6 +56,7 @@ class BinarySearchTree {
 
   
   find(value) {
+    
     if (value === '')
       throw new TypeError('Must input value');
 
@@ -57,6 +64,7 @@ class BinarySearchTree {
       throw new TypeError('Value must be a number');
 
     while (this.root) {
+      
       if (value === this.root.value) {
         return true;
       }
@@ -107,6 +115,7 @@ class BinarySearchTree {
       //Assign temporary node value when there are 2 children.
       let tempValue = this._findMinNodeValue(node.right);
       node.value = tempValue;
+      
       node.right = this._removeNode(node.right, tempValue);
       return node;
 

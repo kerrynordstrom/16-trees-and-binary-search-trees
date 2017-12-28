@@ -2,7 +2,6 @@
 
 const Queue = require('./lib/queue');
 const Stack = require('./lib/stack');
-const util = require('util');
 
 const KerryTree = function (value) {
   this.value = value;
@@ -112,12 +111,5 @@ KerryTree.prototype.pushToArray = function (arr = []) {
   
   return arr;
 };
-
-
-// console.log(util.inspect(eleven.pushToArray(), {showHidden: false, depth: null}));
-
-// console.log(util.inspect(eleven, { showHidden: false, depth: null }))
-
-
 
 module.exports = KerryTree;

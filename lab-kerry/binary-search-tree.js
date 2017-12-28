@@ -1,6 +1,6 @@
 'use strict';
 
-const util = require('util');
+// const util = require('util');
 
 class TreeNode {
   constructor(value) {
@@ -17,14 +17,14 @@ class BinarySearchTree {
 
   //Refactored insert method in order to use separate node class
   insert(value) {
+    let node = new TreeNode(value);
+
     if (typeof value !== 'number')
       throw new TypeError('Value must be a number');
 
-    if (TreeNode.value === value)
-      throw new Error('Value is already present in tree');
+    if (value === null)
+      throw new TypeError('Value must be a number');
 
-    let node = new TreeNode(value);
-		
     if (!this.root) {
       this.root = node;
     } else {
@@ -50,9 +50,14 @@ class BinarySearchTree {
 
   
   find(value) {
+    if (value === '')
+      throw new TypeError('Must input value');
+
+    if (typeof value !== 'number')
+      throw new TypeError('Value must be a number');
+
     while (this.root) {
       if (value === this.root.value) {
-        console.log('Found node', this.root);
         return true;
       }
       if (value < this.root.value) {
@@ -116,4 +121,4 @@ class BinarySearchTree {
   }
 }
 
-
+module.exports = BinarySearchTree;
